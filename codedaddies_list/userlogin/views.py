@@ -21,8 +21,11 @@ def login(request):
         count=Userlogin.objects.filter(email=email, password=password).count()
         print(count)
         if count >0:
+            strn = 'home/'+detect(request)
             
-            return render (request,'base.html')
+            print('should not run this')
+            return redirect(strn)
+
         else:
             messages.error(request,'Invalid email or password')
 
@@ -93,6 +96,7 @@ def detect(request):
 
     #cap = cv2.VideoCapture(0) # video capture source camera (Here webcam of laptop) 
     #ret,frame = cap.read() # return a single frame in variable `frame`
+    
     for (x, y, w, h) in faces:
         cv2.rectangle(frame, (x, y-50), (x+w, y+h+10), (255, 0, 0), 2)
         roi_gray = gray[y:y + h, x:x + w]
@@ -114,7 +118,7 @@ def detect(request):
     #cap.release()
     #cv2.destroyAllWindows()
 
-    return redirect('login')
+    return emotion_dict[maxindex]
 
  
 

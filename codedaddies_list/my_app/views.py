@@ -11,6 +11,39 @@ BASE_IMAGE_URL = 'https://images.craigslist.org/{}_300x300.jpg'
 def home(request):
     return render(request, 'base.html')
 
+
+
+def home(request,mood):
+    print('mood====>',mood)
+    if str(mood) == 'Happy':
+        style = {
+            'bgColor': '0277bd',
+            'mood':'Happy'
+        }
+    elif str(mood) == 'Neutral':
+        style = {
+            'bgColor': '4caf50',
+            'mood':'Neutral'
+        }
+    elif str(mood) == 'Angry':
+        style = {
+            'bgColor': 'b71c1c',
+            'mood':'Angry'
+        }
+    elif str(mood) == 'Sad':
+        style = {
+            'bgColor': 'fb8c00',
+            'mood':'Sad'
+        }
+    
+    elif str(mood) == 'Surprised':
+        style = {
+            'bgColor': 'fb8c00',
+            'mood':'Surprised'
+        }
+    return render(request, 'base.html', style)
+
+
 def new_search(request):
     search = request.POST.get('search')
     models.Search.objects.create(search=search)
