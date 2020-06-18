@@ -13,12 +13,12 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 </head>
-<body>
+<body  style="background-color: #bbdefb !important;">
 <nav style="background-color: #{{bgColor}};">
     <div class="container nav-wrapper ">
         <a href="/" class="brand-logo">Codedaddies List</a>
         <ul id="nav-mobile" class="right">
-            <li><a href="/">Home</a></li>
+            <li><a href="/home">Home</a></li>
             <li><a href="/">Logout</a></li>
         </ul>
     </div>
@@ -49,7 +49,7 @@
             <!-- Promo Content 3 goes here -->
             <div class="center">
                 <i class="large material-icons" style="color: blue">chrome_reader_mode</i>
-                <p>A much sexier front-end to Craigslist</p>
+                <p>A decorated front-end to Craigslist</p>
                 <p class="light center">We built this with ❤️</p>
             </div>
         </div>
@@ -58,8 +58,9 @@
     <form action= "{%url 'new_search' %}" method = "post">
         {% csrf_token %}
     
-        <input type="text" name="search" placeholder="search">
-        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+        <input type="text" style="color: #{{btnColor}};" name="search" placeholder="search">
+        
+        <button class="btn waves-effect waves-light" style="background-color: #{{btnColor}};" type="submit" name="action">Search
             <i class="material-icons right">flash_on</i>
           </button>
     </form>

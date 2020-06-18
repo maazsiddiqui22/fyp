@@ -12,6 +12,8 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 import numpy as np
 import cv2
 import time
+import pandas as pd
+
 def login(request):
 
     if request.POST:
@@ -21,7 +23,8 @@ def login(request):
         count=Userlogin.objects.filter(email=email, password=password).count()
         print(count)
         if count >0:
-            strn = 'home/'+detect(request)
+            detect(request)
+            strn = 'home/'
             
             print('should not run this')
             return redirect(strn)
@@ -117,7 +120,41 @@ def detect(request):
 
     #cap.release()
     #cv2.destroyAllWindows()
+    
+    file= open('result.txt','w')
+    
 
+    if str(emotion_dict[maxindex]) == 'Happy':
+         
+        
+        file.write("0277bd,")
+        file.write("ad1457,") 
+        file.write("Happy,")
+    elif str(emotion_dict[maxindex]) == 'Neutral':
+        
+        file.write("4caf50,")
+        file.write("ad1457,")
+        file.write("Neutral,")
+        #print('neutral')
+    elif str(emotion_dict[maxindex]) == 'Angry':
+        
+        file.write("b71c1c,")
+        file.write("ad1457,") 
+        file.write("Angry,")
+    elif str(emotion_dict[maxindex]) == 'Sad':
+        file.write("fb8c00,")
+        file.write("ad1457, ") 
+        file.write("Sad,")
+           
+    
+    elif str(emotion_dict[maxindex]) == 'Surprised':
+        file.write("b71c1c,") 
+        file.write("ad1457, ") 
+        file.write("Surprised,")
+          
+        
+        
+    
     return emotion_dict[maxindex]
 
  
